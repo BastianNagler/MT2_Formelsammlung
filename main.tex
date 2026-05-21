@@ -1,0 +1,66 @@
+\documentclass[10pt]{article}
+\usepackage{preamble}
+
+\def\FS{Formelsammlung}
+\def\Fach{Elektrische Messtechnik 2}
+\def\FachAkz{MT2}
+\title{\FS \\ \Fach}
+\date{\today}
+\def\Semester{Sommersemester 2026}
+
+\author{\href{https://github.com/BastianNagler/MT2_Formelsammlung}{Bastian Nagler}}
+\def\MatNr{MATNR}
+
+\begin{document}
+
+\pagenumbering{gobble}
+\begin{titlepage}
+	\thispagestyle{empty}
+
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{../OTHR_OTHR_Logo}\\
+		\vspace*{\stretch{1}}
+		\Huge
+		\textsc{\MyTitle}\\
+		\vspace*{\stretch{0.25}}
+		\large
+		\textbf{\Semester}\\
+		{\small
+		nach Vorlesung von Prof. Maier}
+
+		\vspace*{\stretch{0.5}}
+		\href{https://github.com/BastianNagler/MT2_Formelsammlung}{Bastian Nagler}
+
+
+		\vspace*{\stretch{2}}
+		{\renewcommand{\arraystretch}{1.5}
+			\begin{tabular}{l l}
+				Letzte Änderung: & \hspace{4cm}\MyDate   \\
+				Lizenz:          & \hspace{4cm}GPLv3
+			\end{tabular}
+		}
+		\vspace*{\stretch{1}}
+		\vspace*{\stretch{2}}
+
+
+	\end{center}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\clearpage
+
+\pagestyle{fancy}
+\lhead{\MyAuthor}
+\rhead{\Semester}
+\cfoot{\vspace{-20pt}\thepage}
+\pagenumbering{arabic}
+% \setlength{\columnsep}{1pt}
+\raggedcolumns
+
+\begin{multicols*}{2}
+
+\end{multicols*}
+
+
+\end{document}

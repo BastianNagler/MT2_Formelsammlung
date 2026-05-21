@@ -1,0 +1,12 @@
+tags
+*.aux
+*.toc
+*.log
+*.out
+*.fdb*
+*.fls
+*.synctex.gz
+# *.pdf
+build/
+
+info.tex
