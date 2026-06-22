@@ -39,6 +39,17 @@
             \end{flalign*}
         \end{minipage}
         \vspace{10pt}
+
+        \textbf{Kompensation der Offsetströme}
+        \vspace{-10pt}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.6\columnwidth]{Figures/opamp/invertingamp_offset.png}
+        \end{figure}
+        \vspace{-10pt}
+        \begin{align*}
+            R_3 = R_1 || R_2
+        \end{align*}
     
     \subsubsection{Nicht-Invertierender Verstärker}
         \noindent
@@ -164,5 +175,192 @@
         \end{align*}
 
     \subsubsection{Transistor im Rückkopplungspfad}
-
+        \noindent
+        \begin{minipage}{0.5\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Figures/opamp/transistor_back.png}
+        \end{minipage}%
+        \hfill
+        \begin{minipage}{0.5\columnwidth}
+            \raggedright
+            \begin{flalign*}
+                & u_a = -U_T \cdot \ln \left( \frac{u_e}{R \cdot I_{CS}} \right) &
+            \end{flalign*}
+        \end{minipage}
+        \vspace{15pt}
     
+    \subsubsection{Transistor im Eingangspfad}
+        \noindent
+        \begin{minipage}{0.5\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Figures/opamp/transistor_forward.png}
+        \end{minipage}%
+        \hfill
+        \begin{minipage}{0.5\columnwidth}
+            \raggedright
+            \begin{flalign*}
+                & u_a = - R \cdot I_{CS} \cdot e^{\frac{u_e}{U_T}} &
+            \end{flalign*}
+        \end{minipage}
+        \vspace{15pt}
+
+\subsection{Gleichrichter}
+    \subsubsection{Einweggleichrichter}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5 \columnwidth]{Figures/opamp/halfwave_rectifier.png}
+            \includegraphics[width=0.8\columnwidth]{Figures/opamp/halfwave_rectifier_diagram.png}
+        \end{figure}
+        \begin{itemize}
+            \item pos. Halbwelle: OP gleicht Diodenspannung aus
+            \item neg. Halbwelle: OP steuert in negative Sättigung
+            \item \textbf{Problem:} Spannungssprung wegen endlicher Slew-Rate problematisch
+        \end{itemize}
+        
+    \subsubsection{Einweg-Präzisionsgleichrichter}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5 \columnwidth]{Figures/opamp/halfwave_precisionrectifier.png}
+            \includegraphics[width=0.8\columnwidth]{Figures/opamp/halfwave_precisionrectifier_diagram.png}
+        \end{figure}
+        \begin{itemize}
+            \item pos. Halbwelle: negative Diodenspannung
+            \item neg. Halbwelle: Eingang + Diodenspannung
+            \item für kleine Eingangsspannung OP mit guter Slew-Rate nötig
+        \end{itemize}
+
+    \subsubsection{Zweiweg-Präzisionsgleichrichter}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7 \columnwidth]{Figures/opamp/fullwave_precisionrectifier.png}
+            \includegraphics[width=0.8\columnwidth]{Figures/opamp/fullwave_precisionrectifier_diagram.png}
+        \end{figure}
+        
+    \subsubsection{Synchron-Gleichrichter}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\columnwidth]{Figures/opamp/synchronous_rectifier.png}
+        \end{figure}
+
+\subsection{Filter}
+    \subsubsection{Analoge Filter}
+        \textbf{Tiefpass 2. Ordnung}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\columnwidth]{Figures/opamp/TP2.png}
+            \end{figure}
+        \textbf{Hochpass 2. Ordnung}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\columnwidth]{Figures/opamp/HP2.png}
+            \end{figure}
+        \textbf{Bandpass 2. Ordnung}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\columnwidth]{Figures/opamp/BP2.png}
+            \end{figure}
+        \textbf{Notch-Filter 2. Ordnung}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\columnwidth]{Figures/opamp/Notch2.png}
+            \end{figure}
+
+    \subsubsection{Sallen Key Filter}
+        \textbf{Tiefpass 1. Ordnung}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\columnwidth]{Figures/opamp/sallenkey1.png}
+            \end{figure}
+
+        \textbf{Tiefpass 2. Ordnung}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\columnwidth]{Figures/opamp/sallenkey2.png}
+            \end{figure}
+
+    \subsubsection{Butterworth-Filter}
+        \begin{align*}
+            |\underline{H}(\omega)|^2 = \underline{H}(\omega) \underline{H}*(\omega) = \frac{A^2}{ 1 + \left( \frac{\omega}{\omega_g} \right)^{2N} }
+        \end{align*}
+        Das Kriterium macht nur Vorgaben zum Phasengang, nicht zur Phase. Die Flankensteilheit beträgt \(-20 \frac{\mathrm{dB}}{\mathrm{Dekade} \cdot \mathrm{Ordnung}}\)
+        
+        \textbf{Polstellen} (N. Ordnung)
+        \begin{align*}
+            s_{p,n} = j \omega_g \sqrt[2N]{-1}
+        \end{align*}
+        Die 2N Pole liegen auf einem Kreis um den Ursprung der komplexen Ebene mit Radius \(\omega_g\)
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\columnwidth]{Figures/opamp/Butterworth_PN.png}
+        \end{figure}
+        Pole der linken Halbebene bilden die Übertragungsfunktion: 
+        \begin{align*}
+            \Aboxed{
+                \underline{H}(s) &= A \cdot \prod_{n=1}^{N} \left( \frac{-s_{p,n}}{s-s_{p,n}} \right)
+            }
+        \end{align*}
+
+        \textbf{Tiefpass 2. Ordnung}
+            \begin{align*}
+                \underline{H}(s) &= \frac{-\omega_g e^{j135^\circ}}{s-\omega_g e^{j135^\circ}} \cdot \frac{-\omega_g e^{-j135^\circ}}{s-\omega_g e^{-j135^\circ}} \\
+                                &= \frac{\omega_g^2}{s^2 - s \omega_g \left( e^{j135^\circ} + e^{-j135^\circ} \right) + \omega_g^2}\\
+                                &= \frac{\omega_g^2}{s^2 - 2 \cos(135^\circ)\omega_g s + \omega_g^2}\\
+                                &= \frac{A \cdot \omega^2_g}{s^2 + \sqrt{2} \omega_g s + \omega^2_g}
+            \end{align*}
+            Butterworth als Sallen-Key:
+            \begin{gather*}
+                \omega_g = \frac{1}{\sqrt{R_1 R_2 C_1 C_2}} \qquad \sqrt{2} \omega_g = \frac{R_1 + R_2}{R_1 R_2 C_2}
+            \end{gather*}
+            {\small Da 4 Bauteile und 2 Gleichungen \textrightarrow 2 Bauteile frei wählbar}
+            
+        \vspace{12pt}
+
+        \textbf{Tiefpass 5. Ordnung}
+        \begin{align*}
+            \underline{H}(s) = A \cdot \left( \frac{\omega_g}{s + \omega_g} \frac{\omega_g^2}{s^2 + 1,618 \omega_g s + \omega_g^2} \frac{\omega_g^2}{s^2 + 0,618 \omega_g s + \omega_g^2} \right)
+        \end{align*}
+
+\subsection{Verstärker}
+    \subsubsection{u/u-Verstärker}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\columnwidth]{Figures/opamp/noninvertingamp.png}
+        \end{figure}
+        \begin{align*}
+            V_u &= \frac{1}{\frac{R_2}{R_1 + R_2} + \frac{1}{V'}} \approx \frac{R_1 + R_2}{R_2} \qquad \text{für } V' \rightarrow \infty
+        \end{align*}
+        {\small \(V'\) ist Verstärkung des OPs}
+
+    \subsubsection{u/i-Verstärker}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.6\columnwidth]{Figures/opamp/ui_amp.png}
+        \end{figure}
+        \begin{align*}
+            V_G &= \frac{1}{R_2 + \frac{1}{V'} \cdot (R_2 + R_1 + R'_a)} \approx \frac{1}{R_2}\\
+            R_e &= \frac{V'}{V_G} \cdot \frac{R'_e}{R_2 + R_1 + R'_a} \approx \infty \\
+            R_a &= R'_a + (1 + V')\cdot R_2 \approx \infty
+        \end{align*}
+
+    \subsubsection{i/u-Verstärker}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.6\columnwidth]{Figures/opamp/iu_amp.png}
+        \end{figure}
+        \begin{align*}
+            V_R &= - \frac{R - \frac{R'_a}{V'}}{1 + \frac{R'_a}{V' \cdot R_L}} \approx -R\\
+            R_e &= R + V_R \approx 0 \\
+            R_a &= \frac{R'_a}{V'} \approx 0
+        \end{align*}
+
+    \subsubsection{i/i-Verstärker}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.6\columnwidth]{Figures/opamp/ii_amp.png}
+        \end{figure}
+        \begin{align*}
+            V_i &= - \frac{R_1 + R_2 + \frac{R_2}{V'}}{R_2 + \frac{R_2 + R_3 + R'_a}{V'}} \approx - \frac{R_1 + R_2}{R_2}\\
+            R_e &= R_1 + R_2 + V_i \cdot R_2 \approx 0 \\
+            R_a &= R'_a + V' \cdot R_2 \approx \infty
+        \end{align*}
