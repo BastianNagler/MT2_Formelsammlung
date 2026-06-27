@@ -97,6 +97,8 @@ Beispiel Sensor quadriert, Kompensation zieht Wurzel\\
 \fcolorbox{orange}{white}{$\dfrac{S_2'}{S_2} = -\dfrac{S_1'}{S_1^2}$}
 
 \subsubsection{Differenzmethode}
+Kann nur realisiert werden, wenn die Änderung in beide Richtungen möglich ist!\\
+Es werden der gerade Anteil und der Offset unterdrückt.\\
 Gerade und ungerader Anteil der Kennlinie um den Arbeitspunkt $u_0$
 \[ g(\Delta u) = g_g(\Delta u) + g(\Delta u)\]
 \[ g_g(\Delta u) = \frac{1}{2}(g(\Delta u) + g(-\Delta u))\]
@@ -124,6 +126,10 @@ Deformieren der Kennlinie, dass sich innerhalb des Messbereichs ein Wendepunkt b
 Damit kann die Abweichung von der idealen Kennlinie minimiert werden.\\
 \includegraphics[width=\linewidth]{Figures/kennlinien/wendepunkt.png}
 Steigungen von Bereich 1 und Bereich 2 gleichsetzen $\rightarrow$ Auflösen nach gesuchter Größe
+
+\vspace{1ex}
+\textbf{Linearisierung eines nichtlinearen Widerstands über einen Spannungsteiler:}
+\[ R_0 = \frac{2 \cdot R_{\text{anfang}} \cdot R_{\text{ende}} - R_m \cdot (R_{\text{anfang}} + R_{\text{ende}})}{2 \cdot R_m - (R_{\text{anfang}} + R_{\text{ende}})} \]
 
 \subsection{Fehlerursachen und Gegenmaßnahmen}
 \subsubsection{Superponierende Fehler (Offset)}
