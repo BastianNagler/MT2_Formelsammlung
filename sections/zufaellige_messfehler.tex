@@ -101,6 +101,21 @@
         \end{align*}
         \textit{Für unkorrelierte (unabhängige) Messungen gilt immer: $\operatorname{Cov}(X,Y) = 0$}
 
+        \textbf{Wichtige Rechenregeln der Kovarianz:}
+        \begin{itemize}
+            \item \textbf{Gemeinsamer systematischer Fehler (Bias):} Besitzen zwei Messungen $X$ und $Y$ denselben zufälligen systematischen Fehler $B$ (mit Varianz $\sigma_B^2$) und ansonsten unabhängige Fehler $e_X, e_Y$ (also $X = \mu_X + B + e_X$ und $Y = \mu_Y + B + e_Y$), so ist die Kovarianz gleich der Varianz des Bias:
+            \[ \operatorname{Cov}(X,Y) = \operatorname{Cov}(B,B) = \sigma_B^2 \]
+            \item \textbf{Überlappende Messwerte (z.B. gleitender Mittelwert):} Bestehen zwei abgeleitete Größen aus linear kombinierten unabhängigen Messwerten, bei denen einige Werte in beiden vorkommen (z.B. $Y_1 = \frac{X_1 + X_2}{2}$ und $Y_2 = \frac{X_2 + X_3}{2}$), ergibt sich die Kovarianz nur aus den gemeinsamen Elementen:
+            \[ \operatorname{Cov}(aX_1 + bX_2, cX_2 + dX_3) = b \cdot c \cdot \sigma_{X_2}^2 \]
+            Für das Beispiel des gleitenden Mittelwerts: $\operatorname{Cov}(Y_1, Y_2) = \frac{1}{2} \cdot \frac{1}{2} \cdot \sigma_{X_2}^2 = \frac{1}{4}\sigma_{X_2}^2$
+            \item \textbf{Allgemeine Rechenregeln:}
+            \begin{align*}
+                \operatorname{Cov}(X,X) &= \sigma_X^2\\
+                \operatorname{Cov}(aX, bY) &= a \cdot b \cdot \operatorname{Cov}(X,Y) \\
+                \operatorname{Cov}(X+Y, Z) &= \operatorname{Cov}(X,Z) + \operatorname{Cov}(Y,Z)
+            \end{align*}
+        \end{itemize}
+
     \subsubsection{Addition von unabhängigen Messfehlern}
         Werden zwei unkorrelierte Messungen $X$ und $Y$ addiert ($Z = X + Y$):
         \begin{align*}
