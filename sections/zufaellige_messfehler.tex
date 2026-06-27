@@ -133,6 +133,15 @@
             \sigma_Z &= \frac{\sigma_X}{\sqrt{N}} \qquad \text{(Die Standardabweichung sinkt um } \sqrt{N} \text{)}
         \end{align*}
 
+    \subsubsection{Zentraler Grenzwertsatz}
+        Die Summe oder der Mittelwert einer großen Anzahl $N$ von unabhängigen Zufallsvariablen (mit Mittelwert $\mu$ und Varianz $\sigma^2$) nähert sich für große $N$ einer Normalverteilung an, \textbf{unabhängig davon, wie die einzelnen Variablen verteilt sind}.
+        
+        \begin{align*}
+            \text{Summe } Z = \sum_{i=1}^{N} X_i \quad &\implies \quad Z \sim \mathcal{N}(N \cdot \mu, N \cdot \sigma^2) \\[1ex]
+            \text{Mittelwert } \overline{X} = \frac{1}{N}\sum_{i=1}^{N} X_i \quad &\implies \quad \overline{X} \sim \mathcal{N}\left(\mu, \frac{\sigma^2}{N}\right)
+        \end{align*}
+        \textit{Dies ist der Grund, warum Messfehler, die aus vielen kleinen, unabhängigen Ursachen bestehen, in der Praxis meistens normalverteilt sind (Gauß-Verteilung).}
+
     \subsubsection{Sensorfusion / Optimale Gewichtung}
         Kombiniert man zwei unabhängige Sensormessungen linear ($Z = a \cdot X + b \cdot Y$), so gilt:
         \begin{align*}
