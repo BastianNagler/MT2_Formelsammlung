@@ -97,7 +97,7 @@
         Beschreibt die lineare Abhängigkeit zwischen zwei Messreihen $X$ und $Y$:
         \begin{align*}
             \text{Kovarianz: } \operatorname{Cov}(X,Y) &= E\{(X - \mu_X)(Y - \mu_Y)\} \\
-            \text{Korrelationskoeffizient: } r_{XY} &= \frac{\operatorname{Cov}(X,Y)}{\sigma_X \cdot \sigma_Y}
+            \text{Korrelationskoeffizient: } \rho(X,Y) &= \frac{\operatorname{Cov}(X,Y)}{\sigma_X \cdot \sigma_Y}
         \end{align*}
         \textit{Für unkorrelierte (unabhängige) Messungen gilt immer: $\operatorname{Cov}(X,Y) = 0$}
 
@@ -114,6 +114,19 @@
                 \operatorname{Cov}(aX, bY) &= a \cdot b \cdot \operatorname{Cov}(X,Y) \\
                 \operatorname{Cov}(X+Y, Z) &= \operatorname{Cov}(X,Z) + \operatorname{Cov}(Y,Z)
             \end{align*}
+        \end{itemize}
+
+    \subsubsection{Addition von korrelierten Messfehlern}
+        Werden zwei Messungen $X$ und $Y$ gewichtet addiert ($Z = a \cdot X + b \cdot Y$):
+        \begin{align*}
+            \sigma_Z^2 &= a^2 \cdot \sigma_X^2 + 2 \cdot a \cdot b \cdot \operatorname{Cov}(X,Y) + b^2 \cdot \sigma_Y^2
+        \end{align*}
+        Spezialfälle für Korrelationskoeffizient $\rho$:
+        \begin{itemize}
+            \item \textbf{Vollständig korreliert} ($\rho=1$): $\operatorname{Cov}(X,Y) = \sigma_X \cdot \sigma_Y$
+            \item \textbf{Unkorreliert} ($\rho=0$): $\operatorname{Cov}(X,Y) = 0$
+            \item \textbf{Vollständig entgegengesetzt} \\
+            ($\rho=-1$): $\operatorname{Cov}(X,Y) = -\sigma_X \cdot \sigma_Y$
         \end{itemize}
 
     \subsubsection{Addition von unabhängigen Messfehlern}
@@ -135,10 +148,25 @@
         \begin{align*}
             \sigma_Y^2 &= a^2 \cdot \sigma_X^2
         \end{align*}
-        Standardabweichung:
         \begin{align*}
             \sigma_Y &= |a| \cdot \sigma_X
         \end{align*}
+
+    \subsubsection{Fehlerfortpflanzung bei nichtlinearen Funktionen}
+        Wird ein Messwert in eine nichtlineare Funktion $f$ eingesetzt, kann die Varianz mit Hilfe der ersten Ableitung (Linearisierung) an der Stelle des Mittelwerts genähert werden.
+        \begin{itemize}
+            \item \textbf{Eindimensional} ($Z = f(X)$):
+            \begin{align*}
+                \mu_Z &\approx f(\mu_X) \\
+                \sigma_Z^2 &\approx \left(\frac{\partial f}{\partial x}\bigg|_{\mu_X}\right)^2 \cdot \sigma_X^2 \\
+                \sigma_Z &\approx \left|\frac{\partial f}{\partial x}\bigg|_{\mu_X}\right| \cdot \sigma_X
+            \end{align*}
+            \item \textbf{Mehrdimensional} ($Z = f(X,Y)$ für unabhängige Variablen):
+            \begin{align*}
+                \mu_Z &\approx f(\mu_X, \mu_Y) \\
+                \sigma_Z^2 &\approx \left(\frac{\partial f}{\partial x}\bigg|_{\mu_X, \mu_Y}\right)^2 \cdot \sigma_X^2 + \left(\frac{\partial f}{\partial y}\bigg|_{\mu_X, \mu_Y}\right)^2 \cdot \sigma_Y^2
+            \end{align*}
+        \end{itemize}
 
     \subsubsection{Mittelung von Messwerten}
         Werden $N$ unabhängige Messungen derselben Grösse gemittelt ($Z = \frac{1}{N}\sum_{i=1}^{N} X_i$):
@@ -147,6 +175,23 @@
             \sigma_Z^2 &= \frac{1}{N} \cdot \sigma_X^2 \qquad \text{(Die Varianz sinkt um den Faktor } N \text{)} \\
             \sigma_Z &= \frac{\sigma_X}{\sqrt{N}} \qquad \text{(Die Standardabweichung sinkt um } \sqrt{N} \text{)}
         \end{align*}
+
+    \subsubsection{Schätzung von Mittelwert und Varianz aus einer Stichprobe}
+        Liegt eine endliche Stichprobe mit $N$ Werten vor, können Mittelwert und Varianz geschätzt werden.
+        \begin{itemize}
+            \item \textbf{Schätzung des Mittelwerts:}
+            \begin{align*}
+                \hat{\mu}_X &= \frac{1}{N} \sum_{n=0}^{N-1} x_n \qquad \qquad \text{Standardabweichung des Mittelwerts: } \sigma_\mu = \frac{\sigma_X}{\sqrt{N}}
+            \end{align*}
+            \item \textbf{Schätzung der Varianz (wahrer Mittelwert $\mu_X$ bekannt):}
+            \begin{align*}
+                \hat{\sigma}_X^2 &= \frac{1}{N} \sum_{n=0}^{N-1} (x_n - \mu_X)^2
+            \end{align*}
+            \item \textbf{Schätzung der Varianz (Mittelwert $\hat{\mu}_X$ ebenfalls aus Stichprobe ermittelt):}
+            \begin{align*}
+                \hat{\sigma}_X^2 &= \frac{1}{N-1} \sum_{n=0}^{N-1} (x_n - \hat{\mu}_X)^2
+            \end{align*}
+        \end{itemize}
 
     \subsubsection{Zentraler Grenzwertsatz}
         Die Summe oder der Mittelwert einer großen Anzahl $N$ von unabhängigen Zufallsvariablen (mit Mittelwert $\mu$ und Varianz $\sigma^2$) nähert sich für große $N$ einer Normalverteilung an, \textbf{unabhängig davon, wie die einzelnen Variablen verteilt sind}.
@@ -172,4 +217,10 @@
         \textbf{minimale Varianz}:
         \begin{align*}
             \sigma_{Z,opt}^2 = \frac{\sigma_X^2 \cdot \sigma_Y^2}{\sigma_X^2 + \sigma_Y^2} 
+        \end{align*}
+
+    \subsubsection{Auswirkung von digitalen Filtern auf Messrauschen}
+        Wird ein verrauschtes Signal $x[n]$ mit unkorreliertem Rauschen (Varianz $\sigma_X^2$) durch ein digitales Filter mit der Impulsantwort $h[m]$ gefiltert, berechnet sich die Varianz des Ausgangsrauschens $\sigma_Y^2$ zu:
+        \begin{align*}
+            \sigma_Y^2 &= \sigma_X^2 \cdot \sum_{m=-\infty}^{\infty} (h[m])^2
         \end{align*}
