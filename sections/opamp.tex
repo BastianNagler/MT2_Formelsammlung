@@ -109,10 +109,15 @@
         \hfill
         \begin{minipage}{0.55\columnwidth}
             \raggedright
+            Ohne \(R_5\):
             \begin{flalign*}
-                & u_a = 2 \cdot \left( 1 + \frac{R}{R_5} (u_{e2} - u_{e1}) \right) &
+                & u_a = 2 \cdot \left(u_{e2} - u_{e1}\right) &
             \end{flalign*}
-            {\small Vorteil: Nur ein Widerstand zur Einstellung der Verstärkung}
+            \begin{flalign*}
+                & u_a = 2 \cdot \left( 1 + \frac{R}{R_5} \right) \left( (u_{e2} - u_{e1}) \right) &
+            \end{flalign*}
+            {\small Vorteil: Nur ein Widerstand zur Einstellung der Verstärkung, \\
+                    Unendlicher Eingangswiderstand}
         \end{minipage}
         \vspace{10pt}
 
@@ -159,7 +164,7 @@
             \begin{flalign*}
                 & U_a (\omega) = - j \omega \cdot R_2 C_1 \cdot U_e(\omega) &
             \end{flalign*}
-            \small Schaltung neigt stark zum Schwingen.
+            {\small Schaltung neigt stark zum Schwingen.}
         \end{minipage}
         \vspace{15pt}
 
@@ -243,7 +248,7 @@
         \end{figure}
 
 \subsection{Filter}
-    \subsubsection{Analoge Filter}
+    \subsubsection{Multiple Feedback Filter}
         \textbf{Tiefpass 2. Ordnung}
             \begin{figure}[H]
                 \centering
